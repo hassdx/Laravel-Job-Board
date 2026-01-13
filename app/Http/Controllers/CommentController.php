@@ -8,43 +8,64 @@ use App\Models\Comment;
 
 class CommentController extends Controller
 {
-    protected $table = 'comment';
-
-    // Show comments list
-    function index()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
         $data = Comment::orderBy('created_at')->cursorPaginate(5);
 
-        return view('comment.index', [
-            'comments' => $data,
-            'pageTitle' => 'Blog'
-        ]);
+        return view('comment.index', ['comments' => $data,'pageTitle' => 'Comments']);
     }
 
-    // Show single comment
-    function show($id)
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
-        $comment = Comment::find($id);
+        return view('comment.create', ['pageTitle' => 'Comment - Create New Comment']);
 
-        return view('comment.show', [
-            'comments' => $comment,
-            'pageTitle' => $comment->author
-        ]);
     }
 
-    // Create comments (test / factory)
-    function create()
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
     {
-        Comment::factory(20)->create();
-
-        return redirect('/comments');
+        //@todo: will be cmplited in the forms sections
     }
 
-    // Delete a comment
-    function delete($id)
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
     {
-        Comment::destroy($id);
+        $comment = Comment::findOrFail($id);
 
-        return redirect('/comments');
+        return view('comment.show', ['comment' => $comment,'pageTitle' => $comment->author]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        return view('comment.edit', ['pageTitle' => 'Comment - edit Comment']);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //@todo: will be cmplited in the forms sections
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //@todo: will be cmplited in the forms sections
     }
 }

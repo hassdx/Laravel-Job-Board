@@ -23,7 +23,14 @@ class Tag extends Model
 
     protected $guarded = ['id'];
 
-    public function posts(){
+    public function posts()
+    {
         return $this->belongsToMany(Post::class, 'post_tag', 'tag_id', 'post_id');
+    }
+
+    public function comments()
+    {
+        // If a tag has many comments:
+        return $this->hasMany(Comment::class);
     }
 }
