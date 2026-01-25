@@ -34,6 +34,8 @@
                                 <x-nav-link href="/" :active="request()->is('/') ? true : false">Dashboard</x-nav-link>
                                 <x-nav-link href="/about" :active="request()->is('about') ? true : false">about</x-nav-link>
                                 <x-nav-link href="/contact" :active="request()->is('contact') ? true : false">contact</x-nav-link>
+                                <x-nav-link href="/blog" :active="request()->is('blog') ? true : false">blog</x-nav-link>
+
                                 
                                 
                             </div>
